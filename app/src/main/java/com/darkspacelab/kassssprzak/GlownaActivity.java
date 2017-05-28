@@ -21,7 +21,7 @@ public class GlownaActivity extends AppCompatActivity {
     private Button mPrawy;
     private TextView mInfo;
 
-    private int mSampleDurationTime = 1000; // 1 sec
+    private int mSampleDurationTime = 100; //  ~10 fps
     private boolean continueToRun = true;
 
     Handler mHandler = new Handler();
@@ -33,15 +33,32 @@ public class GlownaActivity extends AppCompatActivity {
 
             // do your stuff here, like update
             // this block of code you going to reach every  second
-            mContentView.aktualizacja();
+            if(continueToRun) {
 
-            if(mContentView.czyPrzegrana() == false){
-                mHandler.postDelayed(mRunnable, mSampleDurationTime);
-                mInfo.setText("Wynik: " + mContentView.ilePuntkow());
-            } else {
-                mInfo.setText("PRZEGRANA!!! " + mInfo.getText());
+                mContentView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        System.out.println("NIE!");
+                    }
+                });
+
+                mContentView.aktualizacja();
+
+                if (!mContentView.czyPrzegrana()) {
+                    mHandler.postDelayed(mRunnable, mSampleDurationTime);
+                    mInfo.setText("Wynik: " + mContentView.ilePuntkow());
+                } else {
+                    mContentView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mContentView.resetujGra();
+                            mHandler.postDelayed(mRunnable, mSampleDurationTime);
+                        }
+                    });
+                    mInfo.setText("PRZEGRANA!!! " + mInfo.getText());
+                }
+                mInfo.invalidate();
             }
-            mInfo.invalidate();
         }
     };
 
@@ -97,5 +114,17 @@ public class GlownaActivity extends AppCompatActivity {
                 mContentView.wLewo();
             }
         });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        continueToRun = false;
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        continueToRun = true;
     }
 }
