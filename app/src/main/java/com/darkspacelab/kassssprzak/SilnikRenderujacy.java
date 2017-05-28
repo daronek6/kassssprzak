@@ -226,36 +226,40 @@ public class SilnikRenderujacy extends View {
         return mSegmenty.size();
     }
     public void wPrawo() {
-        switch (mKierunek) {
-            case GORA:
-                mKierunek = Kierunki.PRAWO;
-                break;
-            case DOL:
-                mKierunek = Kierunki.LEWO;
-                break;
-            case LEWO:
-                mKierunek = Kierunki.GORA;
-                break;
-            case PRAWO:
-                mKierunek = Kierunki.DOL;
-                break;
-        }
+        try {
+            switch (mKierunek) {
+                case GORA:
+                    mKierunek = Kierunki.PRAWO;
+                    break;
+                case DOL:
+                    mKierunek = Kierunki.LEWO;
+                    break;
+                case LEWO:
+                    mKierunek = Kierunki.GORA;
+                    break;
+                case PRAWO:
+                    mKierunek = Kierunki.DOL;
+                    break;
+            }
+        } catch (NullPointerException e) { System.out.println(e);}
     }
     public void wLewo() {
-        switch (mKierunek) {
-            case GORA:
-                mKierunek = Kierunki.LEWO;
-                break;
-            case DOL:
-                mKierunek = Kierunki.PRAWO;
-                break;
-            case LEWO:
-                mKierunek = Kierunki.DOL;
-                break;
-            case PRAWO:
-                mKierunek = Kierunki.GORA;
-                break;
-        }
+        try {
+            switch (mKierunek) {
+                case GORA:
+                    mKierunek = Kierunki.LEWO;
+                    break;
+                case DOL:
+                    mKierunek = Kierunki.PRAWO;
+                    break;
+                case LEWO:
+                    mKierunek = Kierunki.DOL;
+                    break;
+                case PRAWO:
+                    mKierunek = Kierunki.GORA;
+                    break;
+            }
+        } catch (NullPointerException e) { System.out.println(e);}
     }
 
     private int w;

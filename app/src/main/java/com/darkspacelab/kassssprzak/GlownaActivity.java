@@ -34,12 +34,27 @@ public class GlownaActivity extends AppCompatActivity {
             // do your stuff here, like update
             // this block of code you going to reach every  second
             if(continueToRun) {
+
+                mContentView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        System.out.println("NIE!");
+                    }
+                });
+
                 mContentView.aktualizacja();
 
-                if (mContentView.czyPrzegrana() == false) {
+                if (!mContentView.czyPrzegrana()) {
                     mHandler.postDelayed(mRunnable, mSampleDurationTime);
                     mInfo.setText("Wynik: " + mContentView.ilePuntkow());
                 } else {
+                    mContentView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mContentView.resetujGra();
+                            mHandler.postDelayed(mRunnable, mSampleDurationTime);
+                        }
+                    });
                     mInfo.setText("PRZEGRANA!!! " + mInfo.getText());
                 }
                 mInfo.invalidate();
