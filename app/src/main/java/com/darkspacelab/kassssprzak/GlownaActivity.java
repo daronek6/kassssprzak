@@ -125,6 +125,14 @@ public class GlownaActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
+        if (!mContentView.czyPrzegrana()) {
+            mContentView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mRunnable.run();
+                }
+            });
+        }
         continueToRun = true;
     }
 }

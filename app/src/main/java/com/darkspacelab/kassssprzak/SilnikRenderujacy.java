@@ -28,29 +28,39 @@ public class SilnikRenderujacy extends View {
         int losowa;
         int color = 0;
         Random generuj = new Random();
-            losowa = generuj.nextInt(7);
+            losowa = generuj.nextInt(10);
 
         switch (losowa) {
             case 0:
                 color = 0xFFFF0000;
             break;
             case 1:
-                color = 0xFF444444;
+                color = 0xFFFF8C00;
             break;
             case 2:
-                color = 0xFF888888;
+                color = 0xFFFFD300;
             break;
             case 3:
-                color = 0xFFFFFFFF;
+                color = 0xFFD1FC00;
             break;
             case 4:
-                color = 0xFF00FF00;
+                color = 0xFF00E54E;
             break;
             case 5:
-                color =0xFF0000FF;
+                color = 0xFF00D9D9;
                 break;
             case 6:
-                color = 0xFFFF00FF;
+                color = 0xFF1F00E2;
+                break;
+            case 7:
+                color = 0xFFA400DF;
+                break;
+            case 8:
+                color = 0xFFEC0085;
+                break;
+            case 9:
+                color = 0xFFFFFFFF;
+                break;
 
         }
         return color;
@@ -66,6 +76,9 @@ public class SilnikRenderujacy extends View {
             this.x = x;
             this.y = y;
             this.color = color;
+        }
+        void setColor(int c) {
+            this.color = c;
         }
     }
 
@@ -127,7 +140,6 @@ public class SilnikRenderujacy extends View {
         PRAWO
     }
 
-    //Ciekawe co się stanie jak ktoś wciśnie klawisz w lewo przed startem gry?
     private Kierunki mKierunek;
 
     private ArrayList<Segment> mSegmenty = null;
@@ -197,9 +209,10 @@ public class SilnikRenderujacy extends View {
 
             if (seg.x == owoc.x && seg.y == owoc.y) {
                 mSegmenty.add(poprzedni);
+                poprzedni.setColor(owoc.color);
                 owoc = new Owocek(losujX(),losujY(),losujKolor());
             }
-
+            // losowanie pozycji owocka tak aby nie pojawił sie w wężu
             do {
                 nieWWezu = true;
                 for (Segment sgmnt : mSegmenty) {
