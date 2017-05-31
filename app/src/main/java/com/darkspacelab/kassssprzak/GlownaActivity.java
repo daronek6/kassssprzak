@@ -20,7 +20,7 @@ public class GlownaActivity extends AppCompatActivity {
     private Button mLewy;
     private Button mPrawy;
     private TextView mInfo;
-
+    private boolean naprawPrzyciski = false;
     private int mSampleDurationTime = 100; //  ~10 fps
     private boolean continueToRun = true;
 
@@ -31,6 +31,22 @@ public class GlownaActivity extends AppCompatActivity {
         //...
         public void run() {
 
+            if(naprawPrzyciski) {
+                naprawPrzyciski = false;
+
+                mPrawy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mContentView.wPrawo();
+                    }
+                });
+                mLewy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mContentView.wLewo();
+                    }
+                });
+            }
             // do your stuff here, like update
             // this block of code you going to reach every  second
             if(continueToRun) {
@@ -133,6 +149,19 @@ public class GlownaActivity extends AppCompatActivity {
                 }
             });
         }
+        mPrawy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        mLewy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
         continueToRun = true;
+        naprawPrzyciski = true;
     }
 }

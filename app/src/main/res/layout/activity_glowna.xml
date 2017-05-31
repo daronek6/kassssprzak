@@ -27,6 +27,7 @@
             android:background="@color/black_overlay"
             android:orientation="vertical"
             tools:ignore="UselessParent">
+
             <TextView
                 android:id="@+id/timer"
                 style="?metaButtonBarStyle"
@@ -35,9 +36,10 @@
                 android:layout_gravity="top|center_horizontal"
                 android:background="@color/black_overlay"
                 android:orientation="horizontal"
+                android:text="@string/info"
                 android:textAlignment="center"
-                android:textColor="@color/colorAccent"
-                android:text="@string/info"/>
+                android:textColor="@color/colorAccent" />
+
             <LinearLayout
                 android:id="@+id/fullscreen_content_controls"
                 style="?metaButtonBarStyle"
@@ -50,13 +52,14 @@
                 <Button
                     android:id="@+id/lewy"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="80dp"
                     android:layout_weight="1"
                     android:text="@string/lewo" />
+
                 <Button
                     android:id="@+id/prawy"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="80dp"
                     android:layout_weight="1"
                     android:text="@string/prawo" />
 
