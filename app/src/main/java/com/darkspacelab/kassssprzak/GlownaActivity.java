@@ -28,7 +28,7 @@ public class GlownaActivity extends AppCompatActivity {
 
     private final Runnable mRunnable = new Runnable() {
 
-        //...
+        //....
         public void run() {
 
             if(naprawPrzyciski) {
